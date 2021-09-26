@@ -59,6 +59,10 @@ class Vehicule{
         return print;
     }
 
+    public boolean estDeuxroues(){
+        return (this.getClass().equals(Moto.class) && !((Moto)this).getSide());
+    }
+
 }
 
 class Moto extends Vehicule {
@@ -73,6 +77,9 @@ class Moto extends Vehicule {
     public Moto(String nom, double vitesse, int poids, int carburant) {
         super(nom, vitesse, poids, carburant);
         this.side = false;
+    }
+
+    public Moto() {
     }
 
     public boolean getSide(){
@@ -127,12 +134,15 @@ class GrandPrix extends Rallye  {
     }
 
     public boolean check() {
-        boolean allow = false;
-
+        boolean allow = true;
+        for(Vehicule vehicule:vehicules){
+            allow = !vehicule.estDeuxroues() && allow;
+        }
         return allow;
     }
 
-    public void run(int i) {
+    public void run(int tour) {
+
     }
 
 }
