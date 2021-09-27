@@ -9,7 +9,7 @@ class Vehicule{
     private String nom;
     private double vitesse;
     private int poids;
-    private int carburant; 
+    int carburant; 
 
     public Vehicule(String nom, double vitesse, int poids, int carburant) {
         this.nom = nom;
@@ -88,7 +88,7 @@ class Moto extends Vehicule {
 
     public String toString(){
         String print = super.toString();
-        if(getSide()){
+        if(!getSide()){
             print += ", Moto";
         }
         else{
@@ -142,7 +142,34 @@ class GrandPrix extends Rallye  {
     }
 
     public void run(int tour) {
-
+        int j = 0;
+        Vehicule vainqueur = new Vehicule();
+        int carburantRestant = 0;
+        if(check()){
+           for(int i = 0;i < tour; i++){
+               for(Vehicule vehicule: vehicules){
+               vehicule.carburant -= 1;
+               }
+           }
+           //System.out.println("je suis ici");
+           for(Vehicule vehicule: vehicules){
+               //System.out.println(vehicule.carburant);
+                if(carburantRestant < vehicule.carburant){
+                    vainqueur = vehicules.get(j);
+                    //System.out.println(vehicule);
+                }
+                j++;
+           }
+           if(vainqueur.getNom() == "Anonyme"){
+                System.out.println("Elimination de tous les vehicules");
+           }
+           else{
+           System.out.println("Le gagnant du grand prix est :\n" + vainqueur);
+           }
+        }
+        else{
+            System.out.println("Pas de Grand Prix\n");
+        }
     }
 
 }
