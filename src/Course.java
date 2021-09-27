@@ -155,7 +155,10 @@ class GrandPrix extends Rallye  {
            for(Vehicule vehicule: vehicules){
                //System.out.println(vehicule.carburant);
                 if(carburantRestant < vehicule.carburant){
+                    //System.out.println("carburant restant " + carburantRestant);
+                    //System.out.println("carburant vehicule " + vehicule.carburant);
                     vainqueur = vehicules.get(j);
+                    carburantRestant = vehicule.carburant;
                     //System.out.println(vehicule);
                 }
                 j++;
